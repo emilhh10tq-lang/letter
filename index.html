@@ -27,7 +27,7 @@ button{
     padding:12px 25px;
     margin:10px;
     cursor:pointer;
-    font-size:18px;
+    transition:0.3s;
 }
 
 #yes{
@@ -38,11 +38,16 @@ button{
 
 #no{
     background:white;
+    font-size:18px;
 }
 
 .heart{
     font-size:100px;
     cursor:pointer;
+}
+
+h2{
+    color:#ff4f92;
 }
 </style>
 </head>
@@ -57,7 +62,7 @@ button{
 </div>
 
 <div id="love" style="display:none;">
-    <h2 id="question">나 사랑하지? 🥺</h2>
+    <h2 id="question">나 사랑하쥐? 🥺</h2>
 
     <button id="yes" onclick="yesLove()">응!!</button>
     <button id="no" onclick="noLove()">아니</button>
@@ -66,6 +71,7 @@ button{
 </div>
 
 <script>
+
 let count = 0;
 
 function startLove(){
@@ -74,37 +80,56 @@ function startLove(){
 }
 
 function noLove(){
+
     count++;
 
-    const yesBtn = document.getElementById("yes");
-    yesBtn.style.fontSize = (20 + count*10) + "px";
+    let yes = document.getElementById("yes");
+    let no = document.getElementById("no");
+    let q = document.getElementById("question");
+
+    yes.style.fontSize = (20 + count*15) + "px";
+
+    no.style.fontSize = Math.max(1, 18 - count*4) + "px";
+    no.style.padding =
+        Math.max(1,12-count*2) + "px " +
+        Math.max(1,25-count*5) + "px";
 
     if(count==1){
-        document.getElementById("question").innerText =
-        "잘 생각해봐! 😳";
+        q.innerText="잘 생각해봐! 😳";
     }
 
     else if(count==2){
-        document.getElementById("question").innerText =
-        "눈치껏 하자! 😡";
+        q.innerText="눈치껏 하자 😡";
     }
 
     else if(count==3){
-        document.getElementById("question").innerText =
-        "진짜 마지막 기회야; ";
+        q.innerText="진짜...? 😭";
     }
 
-    else{
-        document.getElementById("no").style.display="none";
+    else if(count==4){
+        q.innerText="그만 눌러!!! 😤";
+    }
+
+    else if(count>=5){
+        q.innerText="이제 응 눌러 😎";
+        no.style.fontSize="2px";
+        no.style.padding="1px 2px";
     }
 }
 
 function yesLove(){
-    document.getElementById("box").innerHTML = `
+
+    document.getElementById("box").innerHTML=`
+
     <h1>💖 나두 사랑해!! 💖</h1>
-    <p>히히 😆</p>
+
+    <h3>
+    히히 😆💕
+    </h3>
+
     `;
 }
+
 </script>
 
 </body>
