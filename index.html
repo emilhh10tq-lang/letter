@@ -1,75 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#ffd6e7;
+    font-family:sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    overflow:hidden;
+}
+
+#box{
+    padding:20px;
+}
+
+.heart{
+    font-size:100px;
+    cursor:pointer;
+}
+
+h2{
+    color:#ff4f92;
+}
+
+button{
+    border:none;
+    border-radius:15px;
+    padding:12px 25px;
+    margin:10px;
+    cursor:pointer;
+}
+
+#yes{
+    background:#ff6ba5;
+    color:white;
+    font-size:20px;
+    transition:0.3s;
+}
+
+#no{
+    background:white;
+    font-size:18px;
+
+    transition:
+        left 0.5s ease,
+        top 0.5s ease,
+        font-size 0.3s ease,
+        padding 0.3s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="box">
+
+<div id="start">
+    <div class="heart" onclick="startLove()">💖</div>
+    <h2>하트 눌러바</h2>
+</div>
+
+<div id="love" style="display:none;">
+
+    <h2 id="question">나 사랑하쥐? 🥺</h2>
+
+    <button id="yes" onclick="yesLove()">응!!</button>
+
+    <button
+        id="no"
+        onmouseover="runAway()"
+        onclick="runAway()"
+    >
+        아니
+    </button>
+
+</div>
+
+</div>
+
 <script>
 
 let count = 0;
 
 function startLove(){
+
     document.getElementById("start").style.display="none";
     document.getElementById("love").style.display="block";
+
 }
 
 function runAway(){
 
-    noLove();
+    count++;
 
+    const yes = document.getElementById("yes");
     const no = document.getElementById("no");
+    const q = document.getElementById("question");
 
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
+    yes.style.fontSize = (20 + count * 12) + "px";
+
+    no.style.fontSize =
+        Math.max(2,18-count*3) + "px";
+
+    no.style.padding =
+        Math.max(1,12-count*2)
+        + "px "
+        +
+        Math.max(2,25-count*4)
+        + "px";
+
+    if(count==1){
+        q.innerText="잘 생각해봐! 😳";
+    }
+    else if(count==2){
+        q.innerText="눈치껏 하자 😡";
+    }
+    else if(count==3){
+        q.innerText="진짜...? 😭";
+    }
+    else if(count==4){
+        q.innerText="왜 자꾸 아니 눌러 😤";
+    }
+    else if(count==5){
+        q.innerText="잡아봐 😎";
+    }
+    else if(count==6){
+        q.innerText="포기해 😏";
+    }
+    else{
+        q.innerText="이제 응 눌러 💖";
+    }
+
+    const maxX =
+        window.innerWidth - 120;
+
+    const maxY =
+        window.innerHeight - 60;
+
+    const x =
+        Math.random() * maxX;
+
+    const y =
+        Math.random() * maxY;
 
     no.style.position = "fixed";
     no.style.left = x + "px";
     no.style.top = y + "px";
 }
 
-function noLove(){
-
-    count++;
-
-    let yes = document.getElementById("yes");
-    let no = document.getElementById("no");
-    let q = document.getElementById("question");
-
-    yes.style.fontSize = (20 + count*15) + "px";
-
-    no.style.fontSize = Math.max(1, 18 - count*4) + "px";
-    no.style.padding =
-        Math.max(1,12-count*2) + "px " +
-        Math.max(1,25-count*5) + "px";
-
-    if(count==1){
-        q.innerText="잘 생각해봐! 😳";
-    }
-
-    else if(count==2){
-        q.innerText="눈치껏 하자 😡";
-    }
-
-    else if(count==3){
-        q.innerText="진짜...? 😭";
-    }
-
-    else if(count==4){
-        q.innerText="그만 눌러!!! 😤";
-    }
-
-    else if(count>=5){
-        q.innerText="이제 응 눌러 😎";
-        no.style.fontSize="2px";
-        no.style.padding="1px 2px";
-    }
-}
-
 function yesLove(){
 
-    document.getElementById("box").innerHTML=`
+    document.getElementById("box").innerHTML = `
 
-    <h1>💖 나두 사랑해!! 💖</h1>
+        <h1>💖 나두 사랑해!! 💖</h1>
 
-    <h3>
-    히히 😆💕
-    </h3>
+        <h3>
+        히히 😆💕
+        </h3>
 
     `;
 }
 
 </script>
+
+</body>
+</html>
