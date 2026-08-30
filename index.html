@@ -1,2 +1,119 @@
-<h1>안녕 형님 💌</h1>
-<p>첫 편지 사이트 만들기 성공!</p>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>편지💌</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ffdbe8;
+    font-family:'Malgun Gothic',sans-serif;
+}
+
+.container{
+    text-align:center;
+}
+
+.envelope{
+    width:250px;
+    height:160px;
+    background:#f4b6cc;
+    margin:auto;
+    position:relative;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.envelope:hover{
+    transform:scale(1.05);
+}
+
+.envelope::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    clip-path:polygon(0 0,50% 50%,100% 0);
+    background:#f9cadb;
+}
+
+.heart{
+    position:absolute;
+    left:50%;
+    top:60%;
+    transform:translate(-50%,-50%);
+    font-size:30px;
+}
+
+.letter{
+    display:none;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    max-width:500px;
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+h1{
+    color:#ff5b97;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="envelopeBox">
+    <div class="envelope" onclick="openLetter()">
+        <div class="heart">💖</div>
+    </div>
+
+    <h2>편지당 💌</h2>
+    <p>봉투 눌러서 열어주세요</p>
+</div>
+
+<div class="letter" id="letter">
+    <h1>To. 소중한 사람에게 💕</h1>
+
+    <p>
+    안녕!
+    </p>
+
+    <p>
+    이 편지를 읽고 있다는 건
+    네가 내 마음을 열어봤다는 뜻이겠죠?🥺👉👈
+    </p>
+
+    <p>
+    오늘도 고생 많으셧슴니다.
+    오늘 하루정도는 일찍 주무시고,
+    아침에 기분좋게 일어나시길 바랄게요,
+    좋은 하루 보내세요 💖
+    </p>
+
+    <p>
+    From. 에밀 ✨
+    </p>
+</div>
+
+</div>
+
+<script>
+function openLetter(){
+    document.getElementById("envelopeBox").style.display="none";
+    document.getElementById("letter").style.display="block";
+}
+</script>
+
+</body>
+</html>
